@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Analysis</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Importing Google font - Open Sans */
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .navbar .links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .navbar .links a {
+            font-weight: 500;
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 0;
+            transition: 0.2s ease;
+        }
+
+        .navbar .links a:hover {
+            color: #47b2e4;
+        }
+
+        .navbar .buttons a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            padding: 15px 0;
+            transition: 0.2s ease;
+        }
+
+        .navbar .buttons a:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        .navbar .buttons .signin:hover {
+            color: #47b2e4;
+        }
+
+        .navbar .buttons .signup {
+            border: 1px solid #fff;
+            padding: 10px 20px;
+            border-radius: 0.375rem;
+            text-align: center;
+            transition: 0.2s ease;
+        }
+
+        .navbar .buttons .signup:hover {
+            background-color: #47b2e4;
+            color: #fff;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        #hamburger-btn {
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media screen and (max-width: 1023px) {
+            .links {
+                position: fixed;
+                left: -100%;
+                top: 75px;
+                width: 100%;
+                height: 100vh;
+                padding-top: 50px;
+                background: #175d69;
+                flex-direction: column;
+                transition: 0.3s ease;
+            }
+
+            .navbar #menu-toggle:checked ~ .links {
+                left: 0;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            .header .buttons {
+                display: none;
+            }
+        }
+
+        .main {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: transform 0.2s;
+            width: 500px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        .navbar .links a.active {
+            color: #47b2e4;
+            font-weight: 600;
+            border-bottom: 2px solid #47b2e4;
+        }
+
+
+        label {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: left;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            margin-top:40px ;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            resize: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #fff;
+        }
+
+        /* Change placeholder color to white */
+        textarea::placeholder {
+            color: white;
+        }
+
+        @media screen and (max-width: 768px) {
+            textarea {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        button {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background-color: #47b2e4;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .wrap {
+            margin-top: 40px;
+        }
+
+        .wrap button {
+            text-decoration: none;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: 0.2s ease;
+            display: inline-block;
+            border: 1px solid #fff;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .wrap button:hover {
+            background-color: #47b2e4;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <h2 class="logo"><a href="#">Semantic Analysis</a></h2>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" id="hamburger-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </label>
+            <ul class="links">
+                <ul class="links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pro">Details</a></li>
+                    <li><a href="/ind" class="active">Analyze</a></li>
+                    <li><a href="/det">About Us</a></li>
+                </ul>
+                  
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <h1>Semantic Analyzer</h1>
+        <form action="/analyze" method="post">
+            <textarea name="text" rows="5" cols="50" placeholder="Enter Text Here"></textarea><br>
+            <div class="wrap">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Get all the navbar links
+        const links = document.querySelectorAll('.navbar .links a');
+      
+        // Loop through the links and check if their href matches the current URL
+        links.forEach(link => {
+          if (link.href === window.location.href) {
+            link.classList.add('active'); // Add 'active' class to the current link
+          }
+        });
+      </script>      
+</body>
+
+</html>

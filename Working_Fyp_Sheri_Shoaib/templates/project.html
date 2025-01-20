@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Website Homepage</title>
+    <style>
+      /* Importing Google font - Open Sans */
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        width: 100%;
+        background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+        background-attachment: fixed;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000; /* Ensure header stays above other content */
+        background: transparent;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .header.hidden {
+        transform: translateY(-100%);
+      }
+
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 15px;
+      }
+
+      .navbar .logo a {
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .navbar .links {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 35px;
+      }
+
+      .navbar .links a {
+        font-weight: 500;
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 0;
+        transition: 0.2s ease;
+      }
+
+      .navbar .links a:hover {
+        color: #47b2e4;
+      }
+
+      .hero-section {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 95vh;
+        padding: 70px 15px 0; /* Offset for fixed navbar */
+        max-width: 1200px;
+        margin: 0 auto;
+        color: #fff;
+      }
+
+      .hero-section .hero {
+        max-width: 50%;
+        color: #fff;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: #c9c7c7;
+        text-align: justify;
+      }
+
+      .hero-section .img img {
+        width: 517px;
+      }
+
+      .hero-section .img_f1 img {
+        width: 400px;
+      }
+
+      .info-section .img-bef-f1 img {
+        width: 517px;
+      }
+
+      .navbar .links a.active {
+        color: #47b2e4;
+        font-weight: 600;
+        border-bottom: 2px solid #47b2e4;
+      }
+
+
+      .info-section img {
+        width: 1100px;
+        align-items: center;
+      }
+
+      .info-section {
+        padding: 60px 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+        color: #fff;
+        text-align: center;
+      }
+
+      .info-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .info-section p {
+        font-size: 1.2rem;
+        color: #c9c7c7;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <h2 class="logo"><a href="#">Semantic Analysis</a></h2>
+        <ul class="links">
+          <ul class="links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pro" class="active" >Details</a></li>
+            <li><a href="/ind">Analyze</a></li>
+            <li><a href="/det">About Us</a></li>
+          </ul>
+          
+        </ul>
+      </nav>
+    </header>
+    <section class="hero-section">
+      <div class="hero">
+        <h2>Introduction</h2>
+        <p>
+          A machine learning-based system for Semantic analysis of structured content is proposed to understand and analyze emotions and meanings in textual data. It functions like a machine that can decipher structured opinions. This method leverages cutting-edge technology for content recommendations, rule enforcement, and brand monitoring.
+        </p>
+      </div>
+      <div class="img">
+        <img src="{{ url_for('static', filename='images/project.png') }}" alt="hero image" />
+      </div>
+    </section>
+    <section class="info-section">
+      <div class="info">
+        <h2>Main Goal</h2>
+        <p>
+            The goal of this project is to provide a specialized computational
+            framework that is ready for structured content’s semantic analysis.
+            By utilizing advanced machine learning techniques and vast amounts
+            of data, the goal is to determine the underlying emotions and 
+            viewpoints that are contained in textual materials. The effectiveness
+            of the system will be closely examined in terms of critical metrics
+            including computational efficiency, precision, and accuracy through
+            rigorous experimentation and performance evaluation. This novel
+            system has enormous potential in a number of fields, especially 
+            sentiment analysis and content interpretation.
+            
+        </p>
+      </div>
+    </section>
+    <section class="info-section">
+        <div class="info">
+          <h2>Structure of DataSet</h2>
+          <p>
+            We utilized a structured and labeled dataset to train our model effectively. The dataset was carefully organized, ensuring that it provided the necessary features and labels for accurate training. Below is a detailed outline of its structure.          
+          </p>
+          <br>
+        </div>
+        <div class="img_dataset">
+            <img src="{{ url_for('static', filename='images/dataset.png') }}" alt="hero image" />
+        </div>
+    </section>
+    <section class="hero-section">
+        <div class="hero">
+          <h2>F1 Score Achieved</h2>
+          <p>
+            Our semantic analysis model demonstrates outstanding performance, achieving an impressive F1 score. This result reflects the model's accuracy and balance in predicting structured content effectively. The high F1 score showcases the robustness of our approach and the precision of our training process, underscoring the system's ability to deliver reliable insights.
+          </p>
+        </div>
+        <div class="img_f1">
+          <img src="{{ url_for('static', filename='images/f1-score.png') }}" alt="hero image" />
+        </div>
+    </section>
+    <section class="info-section">
+        <div class="info">
+          <h2>Reference F1 Score</h2>
+          <p>
+            Our model's F1 score exceeds that of other well-known benchmarks in semantic analysis. By achieving a higher score, we demonstrate enhanced precision and recall in analyzing structured content. This result underscores our system's ability to deliver more reliable and accurate insights compared to existing solutions.
+          </p>
+          <br>
+        </div>
+        <div class="img-bef-f1">
+            <img src="{{ url_for('static', filename='images/before-f1-score.png') }}" alt="hero image" />
+        </div>
+    </section>
+    <script>
+      // Get all the navbar links
+      const links = document.querySelectorAll('.navbar .links a');
+    
+      // Loop through the links and check if their href matches the current URL
+      links.forEach(link => {
+        if (link.href === window.location.href) {
+          link.classList.add('active'); // Add 'active' class to the current link
+        }
+      });
+    </script>
+    
+    <script>
+      let lastScrollTop = 0;
+      const header = document.querySelector(".header");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScrollTop) {
+          // Scrolling down
+          header.classList.add("hidden");
+        } else {
+          // Scrolling up
+          header.classList.remove("hidden");
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For mobile or negative scrolling
+      });
+    </script>
+  </body>
+</html>
